@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desktop Lights — Decorate Your Screens Like You Decorate Your Home</title>
+<meta name="description" content="Desktop Lights is a macOS menu bar app that wraps your screens in cozy, customizable string lights. Explore every collection, see how it works, and find out what's twinkling next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-dot" aria-hidden="true"></span>
+      Desktop Lights
+    </a>
+    <nav class="site-nav">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#collections">Collections</a>
+      <a href="#bundles">Bundles</a>
+      <a href="#coming-soon">Coming Soon</a>
+      <a href="#support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">for macOS</p>
+      <h1>Decorate your screens<br>like you decorate your home.</h1>
+      <p class="hero-sub">Desktop Lights frames your Mac with luminous, animated bulbs—from classic glass and gemstones to folded paper, folk art, and Filipino parols.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#collections">Browse Collections</a>
+        <a class="btn btn-ghost" href="#how-it-works">See How It Works</a>
+      </div>
+      <p class="hero-note">Basic Lights and Everyday Joy are included free.</p>
+    </div>
+    <div class="hero-art">
+      <img src="images/marketing/hero-actual.jpg" alt="Actual Desktop Lights bulbs from the Basic Lights, Japanese Origami, and Filipino Parol collections" loading="eager">
+    </div>
+  </section>
+
+  <section id="how-it-works" class="section">
+    <div class="wrap">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-lede">Four steps, all from the menu bar. No dock icon, no clutter — just lights.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Pick a collection</h3>
+          <p>Choose from themed sets of hand-designed bulbs — everything from classic glass and Christmas icons to Japanese origami and Filipino parols.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Choose a preset</h3>
+          <p>Every collection ships with multiple bulb designs and color presets, so you can match your mood or the season in a click.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Add a garland or greeting</h3>
+          <p>Select collections layer on garlands, wreaths, or holiday greeting text strung right alongside the bulbs.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Let them glow</h3>
+          <p>Lights drape along your screen edges and twinkle in the background while you work — toggle them on or off anytime from the menu bar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collections" class="section section-alt">
+    <div class="wrap">
+      <h2 class="section-title">Every collection</h2>
+      <p class="section-lede">Fourteen collections at launch. Two are included free, and every premium collection can be previewed before purchase.</p>
+      <div class="grid collections-grid" id="collections-grid"></div>
+    </div>
+  </section>
+
+  <section id="bundles" class="section">
+    <div class="wrap">
+      <h2 class="section-title">Collections &amp; bundles</h2>
+      <p class="section-lede">Choose one premium collection, save with a themed bundle, or unlock the complete launch catalog. Future collections are sold separately.</p>
+      <div class="grid bundles-grid" id="bundles-grid"></div>
+    </div>
+  </section>
+
+  <section id="coming-soon" class="section section-alt coming-soon">
+    <div class="wrap">
+      <h2 class="section-title">More is always coming</h2>
+      <p class="section-lede coming-soon-copy">New collections are in the works. No specifics yet — just more bulbs, more garlands, and more reasons to check back before the next holiday rolls around.</p>
+      <div class="coming-soon-strip" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="section support">
+    <div class="wrap">
+      <h2 class="section-title">Support</h2>
+      <p class="section-lede">Questions, bug reports, or feature ideas — reach out any time.</p>
+      <a class="btn btn-primary" href="mailto:support@example.com">support@example.com</a>
+      <p class="support-note">Placeholder address — replace with your real support inbox before this site goes live.</p>
+    </div>
+  </section>
+
+</main>
+
+<dialog class="showcase-dialog" id="showcase-dialog">
+  <button class="dialog-close" type="button" aria-label="Close enlarged collection image">×</button>
+  <div class="dialog-heading">
+    <p class="eyebrow">Actual in-app artwork</p>
+    <h2 id="dialog-title"></h2>
+  </div>
+  <img id="dialog-image" alt="">
+  <div class="dialog-copy">
+    <p class="dialog-label">Included bulb designs</p>
+    <p id="dialog-designs" class="dialog-designs"></p>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Michiko Yamamoto. All rights reserved.</p>
+    <p class="footer-sub">Desktop Lights is not affiliated with Apple Inc.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
