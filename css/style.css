@@ -103,14 +103,66 @@ a { color: inherit; }
 
 .site-nav a:hover { color: var(--text); }
 
-/* Hero */
+/* Hero — the whole first section styled as a screen, framed on all
+   four edges by the actual Everyday Joy bulb designs, same way the
+   app itself hangs lights around a real screen edge. */
 .hero {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
-  align-items: center;
-  padding: 88px 24px 96px;
+  padding: 48px 24px 80px;
 }
+
+.hero-screen {
+  --edge: 84px;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 30px 70px -35px #000c;
+  background: radial-gradient(120% 100% at 50% 0%, #241b30 0%, var(--bg-bottom) 60%, #150f1c 100%);
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light-edge {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.edge-top, .edge-bottom {
+  left: 0;
+  right: 0;
+  height: var(--edge);
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+}
+
+.edge-top { top: 0; background-image: url("../images/icons/strip-top.png"); }
+.edge-bottom { bottom: 0; background-image: url("../images/icons/strip-bottom.png"); }
+
+.edge-left, .edge-right {
+  top: var(--edge);
+  bottom: var(--edge);
+  width: var(--edge);
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+}
+
+.edge-left { left: 0; background-image: url("../images/icons/strip-left.png"); }
+.edge-right { right: 0; background-image: url("../images/icons/strip-right.png"); }
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: calc(var(--edge) + 24px) calc(var(--edge) + 20px);
+  text-align: center;
+}
+
+.hero-copy .hero-sub { margin-left: auto; margin-right: auto; }
+.hero-copy .hero-actions { justify-content: center; }
 
 .eyebrow {
   text-transform: uppercase;
@@ -147,20 +199,6 @@ a { color: inherit; }
   color: var(--text-faint);
   font-size: 0.85rem;
   margin: 0;
-}
-
-.hero-art {
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--panel-border);
-  box-shadow: 0 30px 70px -30px #000a;
-}
-
-.hero-art img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .btn {
@@ -458,14 +496,16 @@ a { color: inherit; }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; padding-top: 56px; }
-  .hero-art { order: -1; }
+  .hero { padding-top: 32px; }
+  .hero-screen { --edge: 64px; min-height: 560px; }
   .steps { grid-template-columns: repeat(2, 1fr); }
-  .collections-grid, .bundles-grid { grid-template-columns: repeat(2, 1fr); }
+  .collections-grid, .bundles-grid, .bulb-shapes-grid { grid-template-columns: repeat(2, 1fr); }
   .site-nav { display: none; }
 }
 
 @media (max-width: 560px) {
   .steps { grid-template-columns: 1fr; }
-  .collections-grid, .bundles-grid { grid-template-columns: 1fr; }
+  .collections-grid, .bundles-grid, .bulb-shapes-grid { grid-template-columns: 1fr; }
+  .hero-screen { --edge: 48px; min-height: 620px; }
+  .hero-copy { padding-left: calc(var(--edge) + 8px); padding-right: calc(var(--edge) + 8px); }
 }
