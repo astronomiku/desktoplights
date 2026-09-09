@@ -116,7 +116,7 @@ const BUNDLES = [
   {
     name: "Free",
     detail: "Included with every install — no purchase needed.",
-    items: ["Everyday Joy"],
+    items: ["Basic Lights (bulb shapes)", "Everyday Joy"],
   },
   {
     name: "Complete Collection Bundle",
@@ -136,7 +136,7 @@ const BUNDLES = [
   {
     name: "Standalone Collections",
     detail: "Each sold on its own, not currently part of any bundle.",
-    items: ["Classic Christmas", "Nordic Christmas", "Poker Collection", "Japanese Origami"],
+    items: ["Classic Christmas", "Nordic Christmas", "Poker Collection", "Japanese Origami", "Vintage Glass Bulbs (bulb shapes)"],
   },
 ];
 
