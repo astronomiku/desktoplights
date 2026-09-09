@@ -139,7 +139,7 @@ a { color: inherit; }
 }
 
 .edge-top { top: 0; background-image: url("../images/icons/strip-top.png"); }
-.edge-bottom { bottom: 0; background-image: url("../images/icons/strip-bottom.png"); }
+.edge-bottom { bottom: 0; background-image: url("../images/icons/strip-top.png"); transform: scaleY(-1); }
 
 .edge-left, .edge-right {
   top: var(--edge);
@@ -150,7 +150,7 @@ a { color: inherit; }
 }
 
 .edge-left { left: 0; background-image: url("../images/icons/strip-left.png"); }
-.edge-right { right: 0; background-image: url("../images/icons/strip-right.png"); }
+.edge-right { right: 0; background-image: url("../images/icons/strip-left.png"); transform: scaleX(-1); }
 
 .hero-copy {
   position: relative;
