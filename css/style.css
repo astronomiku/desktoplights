@@ -165,9 +165,8 @@ a { color: inherit; }
 .hero-copy .hero-actions { justify-content: center; }
 
 .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
   color: var(--gold);
   margin: 0 0 14px;
   font-weight: 600;
