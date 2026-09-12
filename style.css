@@ -146,6 +146,21 @@ a { color: inherit; }
 .mac-apple { color: rgba(255,255,255,.75); font-size: 7px; }
 .mac-status { margin-left: auto; }
 
+.hero-fairy-lights {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* The canvas above uses the app's real Fairy Lights edge renderer. */
+.hero-basic-wire,
+.basic-edge {
+  display: none !important;
+}
+
 .hero-basic-wire {
   position: absolute;
   inset: 0;
