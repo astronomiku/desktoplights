@@ -146,16 +146,86 @@ a { color: inherit; }
 .mac-apple { color: rgba(255,255,255,.75); font-size: 7px; }
 .mac-status { margin-left: auto; }
 
-.hero-fairy-lights {
+.hero-basic-wire {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
   display: block;
   z-index: 2;
   pointer-events: none;
 }
+
+.hero-basic-wire path { fill: none; stroke-linecap: round; }
+.hero-basic-wire .wire-dark path { stroke: rgba(122, 69, 20, .90); stroke-width: 1.8; }
+.hero-basic-wire .wire-highlight path { stroke: rgba(240, 179, 77, .94); stroke-width: .65; }
+
+.basic-edge {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.basic-edge-top,
+.basic-edge-bottom {
+  left: 25px;
+  right: 25px;
+  height: 0;
+  flex-direction: row;
+}
+.basic-edge-top { top: 7px; }
+.basic-edge-bottom { bottom: 7px; }
+
+.basic-edge-left,
+.basic-edge-right {
+  top: 68px;
+  bottom: 68px;
+  width: 0;
+  flex-direction: column;
+}
+.basic-edge-left { left: 7px; }
+.basic-edge-right { right: 7px; }
+
+.basic-edge span {
+  position: relative;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+}
+
+.basic-edge span::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: -4px;
+  width: 8px;
+  height: 4px;
+  border-radius: 1px;
+  border: 1px solid rgba(76, 35, 5, .90);
+  background: linear-gradient(90deg, #6b3509, #f5bd4e 48%, #7b400d);
+}
+
+.basic-edge img {
+  position: absolute;
+  top: 4px;
+  left: -26px;
+  width: 52px;
+  height: 51px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgba(255, 176, 67, .64));
+}
+
+.basic-edge-top span:first-child { transform: rotate(32deg); }
+.basic-edge-top span:last-child { transform: rotate(-32deg); }
+.basic-edge-bottom span { transform: rotate(180deg); }
+.basic-edge-bottom span:first-child { transform: rotate(148deg); }
+.basic-edge-bottom span:last-child { transform: rotate(-148deg); }
+.basic-edge-left span { transform: rotate(-90deg); }
+.basic-edge-right span { transform: rotate(90deg); }
 
 .live-preview {
   display: inline-flex;
@@ -175,7 +245,7 @@ a { color: inherit; }
 .live-preview span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-fairy-lights { opacity: 1; }
+  .basic-edge img { filter: drop-shadow(0 0 7px rgba(255, 176, 67, .64)); }
 }
 
 .hero-copy {
@@ -533,4 +603,8 @@ a { color: inherit; }
   .collections-grid, .bundles-grid, .bulb-shapes-grid { grid-template-columns: 1fr; }
   .hero-screen { --edge: 48px; min-height: 620px; }
   .hero-copy { padding-left: calc(var(--edge) + 8px); padding-right: calc(var(--edge) + 8px); }
+  .basic-edge-top span:nth-child(even),
+  .basic-edge-bottom span:nth-child(even),
+  .basic-edge-left span:nth-child(even),
+  .basic-edge-right span:nth-child(even) { display: none; }
 }
