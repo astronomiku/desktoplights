@@ -103,54 +103,78 @@ a { color: inherit; }
 
 .site-nav a:hover { color: var(--text); }
 
-/* Hero — the whole first section styled as a screen, framed on all
-   four edges by the actual Everyday Joy bulb designs, same way the
-   app itself hangs lights around a real screen edge. */
+/* Hero — a live product demonstration using the actual Basic Lights
+   artwork and the same inward-facing edge orientation as the app. */
 .hero {
   padding: 48px 24px 80px;
 }
 
 .hero-screen {
-  --edge: 84px;
+  --edge: clamp(55px, 8vw, 86px);
   position: relative;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid var(--panel-border);
   box-shadow: 0 30px 70px -35px #000c;
-  background: radial-gradient(120% 100% at 50% 0%, #241b30 0%, var(--bg-bottom) 60%, #150f1c 100%);
+  background:
+    radial-gradient(ellipse at 50% 32%, rgba(110, 78, 150, .24), transparent 46%),
+    linear-gradient(145deg, #21182b 0%, #17111f 62%, #0d0b13 100%);
   min-height: 620px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.light-edge {
+.mac-menu-bar {
   position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 14px;
+  background: rgba(240, 236, 245, .08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.5);
+  font-size: 8px;
+  backdrop-filter: blur(12px);
+}
+
+.mac-apple { color: rgba(255,255,255,.75); font-size: 7px; }
+.mac-status { margin-left: auto; }
+
+.hero-fairy-lights {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   pointer-events: none;
 }
 
-.edge-top, .edge-bottom {
-  left: 0;
-  right: 0;
-  height: var(--edge);
-  background-repeat: repeat-x;
-  background-size: auto 100%;
+.live-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 20px;
+  padding: 6px 11px;
+  border: 1px solid rgba(244,196,99,.25);
+  border-radius: 999px;
+  background: rgba(10,8,15,.38);
+  color: rgba(244,238,255,.72);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
 }
 
-.edge-top { top: 0; background-image: url("../images/icons/strip-top.png"); }
-.edge-bottom { bottom: 0; background-image: url("../images/icons/strip-top.png"); transform: scaleY(-1); }
+.live-preview span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
 
-.edge-left, .edge-right {
-  top: var(--edge);
-  bottom: var(--edge);
-  width: var(--edge);
-  background-repeat: repeat-y;
-  background-size: 100% auto;
+@media (prefers-reduced-motion: reduce) {
+  .hero-fairy-lights { opacity: 1; }
 }
-
-.edge-left { left: 0; background-image: url("../images/icons/strip-left.png"); }
-.edge-right { right: 0; background-image: url("../images/icons/strip-left.png"); transform: scaleX(-1); }
 
 .hero-copy {
   position: relative;
