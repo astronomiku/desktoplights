@@ -368,7 +368,7 @@ a { color: inherit; }
 .hero-screen {
   min-height: 0;
   aspect-ratio: 3456 / 2234;
-  background: #232221 url("../images/marketing/basiclights-hero.png") center / cover no-repeat;
+  background: #232221 url("../images/showcases/basic-lights.jpg") center / cover no-repeat;
 }
 
 .hero-screen .mac-menu-bar {
