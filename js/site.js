@@ -1,4 +1,5 @@
 const collections=[
+ ["Vintage Glass Bulbs","Individual","vintage-glass-bulbs","A premium bulb shape with softer, old-world silhouettes—layer it onto any collection.","₱199"],
  ["Fairy Garden","Individual","fairy-garden","Mushrooms, blossoms, butterflies, fairies, lanterns, and wisteria.","₱199"],
  ["Gemstone Collection","Individual","gemstones","Twelve luminous birthstones, from garnet to turquoise.","₱299"],
  ["Halloween Collection","Individual","haunted-glow","Skulls, ghosts, pumpkins, bats, and optional cobweb garlands.","₱199"],
