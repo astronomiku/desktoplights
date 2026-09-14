@@ -14,3 +14,33 @@ const collections=[
 ];
 const grid=document.querySelector("[data-collections]");
 if(grid)grid.innerHTML=collections.map(([name,tag,id,copy,price])=>`<article class="collection-card"><img src="images/showcases/${id}.jpg" alt="${name} Desktop Lights collection" loading="lazy"><div class="card-copy"><div class="card-top"><h2>${name}</h2><span class="pill ${tag==="Free"?"free":tag==="Bundle"?"bundle":""}">${tag==="Bundle"?"In bundle":tag}</span></div><p>${copy}</p><div class="card-bottom"><span class="price">${price}</span>${tag==="Bundle"?'<a class="bundle-hint" href="pricing.html">Save in the Filipino Christmas Bundle →</a>':""}</div></div></article>`).join("");
+
+// Hero video lightbox: click (or Enter/Space) the hero video to open it
+// larger in an overlay, same source, with sound and scrubbing controls.
+(function(){
+  const trigger=document.querySelector("[data-hero-trigger]");
+  const lightbox=document.querySelector("[data-lightbox]");
+  if(!trigger||!lightbox)return;
+  const bigVideo=lightbox.querySelector(".lightbox-video");
+  const heroVideo=trigger.querySelector("video");
+  function open(){
+    lightbox.hidden=false;
+    document.body.style.overflow="hidden";
+    if(heroVideo)bigVideo.currentTime=heroVideo.currentTime||0;
+    bigVideo.muted=false;
+    bigVideo.play().catch(()=>{});
+  }
+  function close(){
+    lightbox.hidden=true;
+    document.body.style.overflow="";
+    bigVideo.pause();
+  }
+  trigger.addEventListener("click",open);
+  trigger.addEventListener("keydown",function(e){
+    if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}
+  });
+  lightbox.querySelectorAll("[data-lightbox-close]").forEach(function(el){el.addEventListener("click",close);});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&!lightbox.hidden)close();
+  });
+})();
