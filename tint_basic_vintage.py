@@ -174,6 +174,12 @@ def make_showcase(collection_id, images, glow_colors=None, rows=None):
     per_row = math.ceil(count / rows)
     row_height = 430 if rows == 2 else 720
     first_wire = 100 if rows == 2 else 170
+    # index.html's homepage overlays a "<Collection> | Free" pill in the
+    # bottom-left corner of this exact image (basic-lights.jpg specifically)
+    # -- keep the bottom ~130px of the 1000px canvas clear of bulbs/glow so
+    # that pill never sits on top of a bulb (it did, on the 2-row layout's
+    # bottom-left globe bulb, before this clamp existed).
+    bottom_safe_y = canvas.height - 130
     draw = ImageDraw.Draw(canvas)
     index = 0
     for row in range(rows):
@@ -184,16 +190,17 @@ def make_showcase(collection_id, images, glow_colors=None, rows=None):
         draw.line(points, fill=(83, 43, 10, 255), width=7)
         draw.line(points, fill=(239, 170, 54, 255), width=3)
         cell_width = canvas.width / row_count
+        max_height = min(row_height - 72, bottom_safe_y - (wire_y + 22))
         for col in range(row_count):
             cx = cell_width * (col + .5)
             local_wire_y = wire_y + 10 * math.sin((cx / canvas.width) * math.pi * 4)
             if images[index] == FAIRY:
-                draw_fairy_tile(canvas, cx, local_wire_y, cell_width, row_height - 72, CLASSIC_MULTICOLOR)
+                draw_fairy_tile(canvas, cx, local_wire_y, cell_width, max_height, CLASSIC_MULTICOLOR)
             else:
                 draw_socket(canvas, cx, round(local_wire_y - 2))
                 top = local_wire_y + 22
                 glow_rgb = glow_colors[index] if glow_colors else (255, 161, 55)
-                place_bulb(canvas, images[index], cx, top, cell_width, row_height - 72, glow_rgb)
+                place_bulb(canvas, images[index], cx, top, cell_width, max_height, glow_rgb)
             index += 1
     draw.rounded_rectangle((7, 7, 1592, 992), radius=30, outline=(244, 196, 99, 70), width=2)
     canvas.convert("RGB").save(OUT / f"{collection_id}.jpg", quality=92, optimize=True, progressive=True)
