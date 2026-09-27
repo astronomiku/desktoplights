@@ -15,7 +15,7 @@ const collections=[
 function renderCollections(list,selector){
  const grid=document.querySelector(selector);
  if(!grid)return;
- grid.innerHTML=list.map(([name,tag,id,copy,price])=>`<article class="collection-card"><img src="images/showcases/${id}.jpg" alt="${name} Desktop Lights collection" loading="lazy"><div class="card-copy"><div class="card-top"><h2>${name}</h2><span class="pill ${tag==="Free"?"free":tag==="Bundle"?"bundle":""}">${tag==="Bundle"?"In bundle":tag}</span></div><p>${copy}</p><div class="card-bottom"><span class="price">${price}</span>${tag==="Bundle"?'<a class="bundle-hint" href="pricing.html">Save in the Filipino Christmas Bundle →</a>':""}</div></div></article>`).join("");
+ grid.innerHTML=list.map(([name,tag,id,copy,price])=>`<article class="collection-card"><img src="images/showcases/${id}.jpg" alt="${name} Desktop Lights collection" loading="lazy"><div class="card-copy"><div class="card-top"><h2>${name}</h2><span class="pill ${tag==="Free"?"free":tag==="Bundle"?"bundle":""}">${tag==="Bundle"?"In bundle":tag}</span></div><p>${copy}</p><div class="card-bottom"><span class="price">${price}</span><a class="bundle-hint" href="https://apps.apple.com/app/6809770698" target="_blank" rel="noopener">Get the app to purchase →</a></div></div></article>`).join("");
 }
 if(document.querySelector("[data-collections='holiday']")||document.querySelector("[data-collections='nonseasonal']")){
  renderCollections(collections.filter(c=>c[5]==="holiday"),"[data-collections='holiday']");
