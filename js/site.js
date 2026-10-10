@@ -33,7 +33,24 @@ if(document.querySelector("[data-collections='holiday']")||document.querySelecto
   if(!trigger||!lightbox)return;
   const bigVideo=lightbox.querySelector(".lightbox-video");
   const heroVideo=trigger.querySelector("video");
+  const loadingLabel=trigger.querySelector("[data-video-loading]");
+  function ready(){
+    trigger.classList.add("video-ready");
+    trigger.setAttribute("tabindex","0");
+    trigger.setAttribute("aria-disabled","false");
+    trigger.setAttribute("aria-busy","false");
+  }
+  function failed(){
+    if(loadingLabel)loadingLabel.textContent="Video unavailable";
+    trigger.setAttribute("aria-busy","false");
+  }
+  if(heroVideo){
+    if(heroVideo.readyState>=4)ready();
+    else heroVideo.addEventListener("canplaythrough",ready,{once:true});
+    heroVideo.addEventListener("error",failed,{once:true});
+  }
   function open(){
+    if(!trigger.classList.contains("video-ready"))return;
     lightbox.hidden=false;
     document.body.style.overflow="hidden";
     if(heroVideo)bigVideo.currentTime=heroVideo.currentTime||0;
