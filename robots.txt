@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astronomiku.github.io/desktoplights/sitemap.xml
