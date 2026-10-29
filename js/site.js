@@ -10,7 +10,8 @@ const collections=[
  ["Classic Christmas","Individual","classic-christmas","Trees, stars, candy canes, Santa, greetings, and holiday garlands.","holiday"],
  ["Nordic Christmas","Individual","nordic-christmas","Scandinavian folk ornaments and a wooden-bead garland.","holiday"],
  ["Filipino Parol","Bundle","filipino-parol","Paper parols, Maligayang Pasko, banderitas, and poinsettias.","holiday"],
- ["Premium Capiz Parol","Bundle","premium-capiz-parols","Layered capiz-shell parols with gold and silver star garlands.","holiday"]
+ ["Premium Capiz Parol","Bundle","premium-capiz-parols","Layered capiz-shell parols with gold and silver star garlands.","holiday"],
+ ["Lunar Fortune Lights","Individual","lunar-fortune-lights","Dragons, red lanterns, koi, gold coins, red envelopes, and more.","holiday"]
 ];
 function renderCollections(list,selector){
  const grid=document.querySelector(selector);
