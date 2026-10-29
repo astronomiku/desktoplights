@@ -11,7 +11,7 @@ const collections=[
  ["Nordic Christmas","Individual","nordic-christmas","Scandinavian folk ornaments and a wooden-bead garland.","holiday"],
  ["Filipino Parol","Bundle","filipino-parol","Paper parols, Maligayang Pasko, banderitas, and poinsettias.","holiday"],
  ["Premium Capiz Parol","Bundle","premium-capiz-parols","Layered capiz-shell parols with gold and silver star garlands.","holiday"],
- ["Lunar Fortune Lights","Individual","lunar-fortune-lights","Dragons, red lanterns, koi, gold coins, red envelopes, and more.","holiday"]
+ ["Lunar Fortune Lights","Coming soon","lunar-fortune-lights","Dragons, red lanterns, koi, gold coins, red envelopes, and more.","holiday"]
 ];
 function renderCollections(list,selector){
  const grid=document.querySelector(selector);
@@ -26,42 +26,34 @@ if(document.querySelector("[data-collections='holiday']")||document.querySelecto
  renderCollections(collections,"[data-collections]");
 }
 
-// Hero video lightbox: click (or Enter/Space) the hero video to open it
-// larger in an overlay, same source, with sound and scrubbing controls.
+// Hero video lightbox: clicking the hero (or pressing Enter/Space) opens the
+// YouTube video in an overlay. The YouTube player is only created when the
+// visitor presses play, and removed again on close so playback fully stops.
 (function(){
   const trigger=document.querySelector("[data-hero-trigger]");
   const lightbox=document.querySelector("[data-lightbox]");
   if(!trigger||!lightbox)return;
-  const bigVideo=lightbox.querySelector(".lightbox-video");
-  const heroVideo=trigger.querySelector("video");
-  const loadingLabel=trigger.querySelector("[data-video-loading]");
-  function ready(){
-    trigger.classList.add("video-ready");
-    trigger.setAttribute("tabindex","0");
-    trigger.setAttribute("aria-disabled","false");
-    trigger.setAttribute("aria-busy","false");
-  }
-  function failed(){
-    if(loadingLabel)loadingLabel.textContent="Video unavailable";
-    trigger.setAttribute("aria-busy","false");
-  }
-  if(heroVideo){
-    if(heroVideo.readyState>=4)ready();
-    else heroVideo.addEventListener("canplaythrough",ready,{once:true});
-    heroVideo.addEventListener("error",failed,{once:true});
-  }
+  const player=lightbox.querySelector("[data-youtube-player]");
+  if(!player)return;
+  const videoID=player.getAttribute("data-youtube-id");
   function open(){
-    if(!trigger.classList.contains("video-ready"))return;
+    if(!videoID)return;
+    const frame=document.createElement("iframe");
+    frame.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(videoID)+"?autoplay=1&rel=0&playsinline=1";
+    frame.title="Desktop Lights for Mac video";
+    frame.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen=true;
+    frame.style.cssText="display:block;width:100%;height:100%;border:0;border-radius:inherit";
+    player.replaceChildren(frame);
     lightbox.hidden=false;
     document.body.style.overflow="hidden";
-    if(heroVideo)bigVideo.currentTime=heroVideo.currentTime||0;
-    bigVideo.muted=false;
-    bigVideo.play().catch(()=>{});
+    lightbox.querySelector(".lightbox-close").focus();
   }
   function close(){
     lightbox.hidden=true;
     document.body.style.overflow="";
-    bigVideo.pause();
+    player.replaceChildren();
+    trigger.focus();
   }
   trigger.addEventListener("click",open);
   trigger.addEventListener("keydown",function(e){
