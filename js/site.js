@@ -27,32 +27,26 @@ if(document.querySelector("[data-collections='holiday']")||document.querySelecto
 }
 
 // Hero video lightbox: clicking the hero (or pressing Enter/Space) opens the
-// YouTube video in an overlay. The YouTube player is only created when the
-// visitor presses play, and removed again on close so playback fully stops.
+// video in an overlay. The video file is not downloaded until the visitor
+// presses play (preload="none"), so the home page loads quickly.
 (function(){
   const trigger=document.querySelector("[data-hero-trigger]");
   const lightbox=document.querySelector("[data-lightbox]");
   if(!trigger||!lightbox)return;
-  const player=lightbox.querySelector("[data-youtube-player]");
-  if(!player)return;
-  const videoID=player.getAttribute("data-youtube-id");
+  const video=lightbox.querySelector("video.lightbox-video");
+  if(!video)return;
   function open(){
-    if(!videoID)return;
-    const frame=document.createElement("iframe");
-    frame.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(videoID)+"?autoplay=1&rel=0&playsinline=1";
-    frame.title="Desktop Lights for Mac video";
-    frame.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
-    frame.allowFullscreen=true;
-    frame.style.cssText="display:block;width:100%;height:100%;border:0;border-radius:inherit";
-    player.replaceChildren(frame);
     lightbox.hidden=false;
     document.body.style.overflow="hidden";
+    video.muted=false;
+    video.play().catch(function(){});
     lightbox.querySelector(".lightbox-close").focus();
   }
   function close(){
     lightbox.hidden=true;
     document.body.style.overflow="";
-    player.replaceChildren();
+    video.pause();
+    video.currentTime=0;
     trigger.focus();
   }
   trigger.addEventListener("click",open);
